@@ -19,7 +19,7 @@ public class RegisterExpenseUseCase
             throw new ArgumentException("Amount must be greater than zero.");
         if (request.Date.CompareTo(DateTime.Today) > 0)
             throw new ArgumentException("Expenses cannot be for the future.");
-        if(Enum.IsDefined(typeof(PaymentType), request.PaymentType))
+        if(!Enum.IsDefined(typeof(PaymentType), request.PaymentType))
             throw new ArgumentException("Payment type is not valid.");
-    }
+    } 
 }
