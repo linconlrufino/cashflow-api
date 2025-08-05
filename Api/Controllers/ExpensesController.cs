@@ -1,5 +1,6 @@
 using Application.UseCases.Expenses.Register;
 using Communication.Requests;
+using Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlowApi.Controllers;
@@ -15,16 +16,17 @@ public class ExpensesController : ControllerBase
         {
             var useCase = new RegisterExpenseUseCase();
             var response = useCase.Execute(request);
-
             return Created(string.Empty, response);
         }
         catch (ArgumentException ex)
         {
-            return BadRequest(ex.Message);
+            var errorResponse = new ErrorResponse(ex.Message);
+            return BadRequest(errorResponse);
         }
         catch
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, "Unknown Error");
+            var errorResponse = new ErrorResponse("Unknown Error");
+            return StatusCode(StatusCodes.Status500InternalServerError, errorResponse);
         }
     }
 }
