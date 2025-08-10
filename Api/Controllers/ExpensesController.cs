@@ -1,7 +1,5 @@
 using Application.UseCases.Expenses.Register;
 using Communication.Requests;
-using Communication.Responses;
-using Exception.ExceptionsBase;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlowApi.Controllers;
@@ -13,21 +11,8 @@ public class ExpensesController : ControllerBase
     [HttpPost()]
     public IActionResult Register(RegisterExpenseRequest request)
     {
-        try
-        {
-            var useCase = new RegisterExpenseUseCase();
-            var response = useCase.Execute(request);
-            return Created(string.Empty, response);
-        }
-        catch (ErrorOnValidationException ex)
-        {
-            var errorResponse = new ErrorResponse(ex.Errors);
-            return BadRequest(errorResponse);
-        }
-        catch
-        {
-            var errorResponse = new ErrorResponse("Unknown Error");
-            return StatusCode(StatusCodes.Status500InternalServerError, errorResponse);
-        }
+        var useCase = new RegisterExpenseUseCase();
+        var response = useCase.Execute(request);
+        return Created(string.Empty, response);
     }
 }
