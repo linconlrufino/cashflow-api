@@ -17,14 +17,13 @@ public class ExceptionFilter : IExceptionFilter
 
     private void HandleProjectException(ExceptionContext context)
     {
-        if (context.Exception is ErrorOnValidationException)
-        {
-            var errorOnValidationException = (ErrorOnValidationException)context.Exception;
-            var errorResponse = new ErrorResponse(errorOnValidationException.Errors);
-            
-            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            context.Result = new BadRequestObjectResult(errorResponse);
-        }
+        if (context.Exception is not ErrorOnValidationException errorOnValidationException)
+            return;
+
+        var errorResponse = new ErrorResponse(errorOnValidationException.Errors);
+
+        context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+        context.Result = new BadRequestObjectResult(errorResponse);
     }
 
     private void ThrowUnknownError(ExceptionContext context)
