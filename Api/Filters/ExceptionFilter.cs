@@ -1,4 +1,5 @@
 using Communication.Responses;
+using Exception;
 using Exception.ExceptionsBase;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -28,7 +29,7 @@ public class ExceptionFilter : IExceptionFilter
 
     private void ThrowUnknownError(ExceptionContext context)
     {
-        var errorResponse = new ErrorResponse("Unknown Error");
+        var errorResponse = new ErrorResponse(ResourcesErrorMessages.UNKNOWN_ERROR);
 
         context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
         context.Result = new ObjectResult(errorResponse);
