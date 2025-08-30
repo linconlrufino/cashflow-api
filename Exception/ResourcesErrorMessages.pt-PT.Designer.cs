@@ -14,21 +14,21 @@ namespace Exception {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResourcesErrorMessages {
+    public class ResourcesErrorMessages_pt_PT {
         
-        private static System.Resources.ResourceManager resourceMan;
+        public static System.Resources.ResourceManager resourceMan;
         
-        private static System.Globalization.CultureInfo resourceCulture;
+        public static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResourcesErrorMessages() {
+        public ResourcesErrorMessages_pt_PT() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Exception.ResourcesErrorMessages", typeof(ResourcesErrorMessages).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Exception.ResourcesErrorMessages_pt_PT", typeof(ResourcesErrorMessages_pt_PT).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -42,18 +42,6 @@ namespace Exception {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        public static string UNKNOWN_ERROR {
-            get {
-                return ResourceManager.GetString("UNKNOWN_ERROR", resourceCulture);
-            }
-        }
-        
-        public static string TITLE_REQUIRED {
-            get {
-                return ResourceManager.GetString("TITLE_REQUIRED", resourceCulture);
             }
         }
         
@@ -72,6 +60,18 @@ namespace Exception {
         public static string PAYMENT_TYPE_IS_NOT_VALID {
             get {
                 return ResourceManager.GetString("PAYMENT_TYPE_IS_NOT_VALID", resourceCulture);
+            }
+        }
+        
+        public static string TITLE_REQUIRED {
+            get {
+                return ResourceManager.GetString("TITLE_REQUIRED", resourceCulture);
+            }
+        }
+        
+        public static string UNKNOWN_ERROR {
+            get {
+                return ResourceManager.GetString("UNKNOWN_ERROR", resourceCulture);
             }
         }
     }

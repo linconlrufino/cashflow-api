@@ -14,21 +14,21 @@ namespace Exception {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResourcesErrorMessages {
+    public class ResourcesErrorMessages_fr {
         
-        private static System.Resources.ResourceManager resourceMan;
+        public static System.Resources.ResourceManager resourceMan;
         
-        private static System.Globalization.CultureInfo resourceCulture;
+        public static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResourcesErrorMessages() {
+        public ResourcesErrorMessages_fr() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         public static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Exception.ResourcesErrorMessages", typeof(ResourcesErrorMessages).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Exception.ResourcesErrorMessages_fr", typeof(ResourcesErrorMessages_fr).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,9 +57,9 @@ namespace Exception {
             }
         }
         
-        public static string AMOUNT_MUST_BE_GREATER_THAN_ZERO {
+        public static string PAYMENT_TYPE_IS_NOT_VALID {
             get {
-                return ResourceManager.GetString("AMOUNT_MUST_BE_GREATER_THAN_ZERO", resourceCulture);
+                return ResourceManager.GetString("PAYMENT_TYPE_IS_NOT_VALID", resourceCulture);
             }
         }
         
@@ -69,9 +69,9 @@ namespace Exception {
             }
         }
         
-        public static string PAYMENT_TYPE_IS_NOT_VALID {
+        public static string AMOUNT_MUST_BE_GREATER_THAN_ZERO {
             get {
-                return ResourceManager.GetString("PAYMENT_TYPE_IS_NOT_VALID", resourceCulture);
+                return ResourceManager.GetString("AMOUNT_MUST_BE_GREATER_THAN_ZERO", resourceCulture);
             }
         }
     }

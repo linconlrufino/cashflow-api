@@ -18,19 +18,20 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="UNKNOWN_ERROR" xml:space="preserve">
-        <value>Unknown Error.</value>
-    </data>
-    <data name="TITLE_REQUIRED" xml:space="preserve">
-        <value>Title is required.</value>
-    </data>
     <data name="AMOUNT_MUST_BE_GREATER_THAN_ZERO" xml:space="preserve">
-        <value>Amount must be greater than zero.</value>
+        <value>O valor deve ser maior que zero.</value>
     </data>
     <data name="EXPENSES_CANNOT_BE_FOR_THE_FUTURE" xml:space="preserve">
-        <value>Expenses cannot be for the future.</value>
+        <value>As despesas não podem ser para o futuro.</value>
     </data>
     <data name="PAYMENT_TYPE_IS_NOT_VALID" xml:space="preserve">
-        <value>Payment type is not valid.</value>
+        <value>O tipo de pagamento não é válido.</value>
+    </data>
+    <data name="TITLE_REQUIRED" xml:space="preserve">
+        <value>O título é obrigatório.
+</value>
+    </data>
+    <data name="UNKNOWN_ERROR" xml:space="preserve">
+        <value>Erro desconhecido.</value>
     </data>
 </root>

@@ -13,4 +13,4 @@ public class RegisterExpenseValidator : AbstractValidator<RegisterExpenseRequest
         RuleFor(expense => expense.Date).LessThanOrEqualTo(DateTime.UtcNow).WithMessage(ResourcesErrorMessages.EXPENSES_CANNOT_BE_FOR_THE_FUTURE);
         RuleFor(expense => expense.PaymentType).IsInEnum().WithMessage(ResourcesErrorMessages.PAYMENT_TYPE_IS_NOT_VALID);
     }
-}`
+}
