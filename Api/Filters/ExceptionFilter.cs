@@ -16,7 +16,7 @@ public class ExceptionFilter : IExceptionFilter
             ThrowUnknownError(context);
     }
 
-    private void HandleProjectException(ExceptionContext context)
+    private static void HandleProjectException(ExceptionContext context)
     {
         if (context.Exception is not ErrorOnValidationException errorOnValidationException)
             return;
@@ -27,7 +27,7 @@ public class ExceptionFilter : IExceptionFilter
         context.Result = new BadRequestObjectResult(errorResponse);
     }
 
-    private void ThrowUnknownError(ExceptionContext context)
+    private static void ThrowUnknownError(ExceptionContext context)
     {
         var errorResponse = new ErrorResponse(ResourcesErrorMessages.UNKNOWN_ERROR);
 
