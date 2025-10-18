@@ -6,10 +6,14 @@ namespace Infrastructure.Repositories;
 
 internal class ExpensesRepository : IExpensesRepository
 {
+    private readonly CashFlowDbContext dbContext;
+    public ExpensesRepository(CashFlowDbContext dbContext)
+    {
+        this.dbContext = dbContext;
+    }
+
     public void Add(Expense expense)
     {
-        var dbContext = new CashFlowDbContext();
-
         dbContext.Expenses.Add(expense);
         dbContext.SaveChanges();
     }
