@@ -4,5 +4,5 @@ namespace Application.UseCases.Expenses.Register;
 
 public interface IRegisterExpenseUseCase
 {
-    RegisterExpenseRequest Execute(RegisterExpenseRequest request);
+    Task<RegisterExpenseRequest> Execute(RegisterExpenseRequest request);
 }

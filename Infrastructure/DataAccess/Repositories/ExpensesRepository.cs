@@ -1,8 +1,7 @@
 using Domain.Entities;
 using Domain.Repositories.Expenses;
-using Infrastructure.DataAccess;
 
-namespace Infrastructure.Repositories;
+namespace Infrastructure.DataAccess.Repositories;
 
 internal class ExpensesRepository : IExpensesRepository
 {
@@ -12,9 +11,8 @@ internal class ExpensesRepository : IExpensesRepository
         this.dbContext = dbContext;
     }
 
-    public void Add(Expense expense)
+    public async Task AddAsync(Expense expense)
     {
-        dbContext.Expenses.Add(expense);
-        dbContext.SaveChanges();
+        await dbContext.Expenses.AddAsync(expense);
     }
 }
