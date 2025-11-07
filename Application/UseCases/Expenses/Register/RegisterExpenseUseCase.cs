@@ -1,6 +1,7 @@
+using AutoMapper;
 using Communication.Requests;
+using Communication.Responses;
 using Domain.Entities;
-using Domain.Enums;
 using Domain.Repositories;
 using Domain.Repositories.Expenses;
 using Exception.ExceptionsBase;
@@ -11,30 +12,25 @@ public class RegisterExpenseUseCase : IRegisterExpenseUseCase
 {
     private readonly IExpensesRepository expensesRepository;
     private readonly IUnitOfWork unitOfWork;
+    private readonly IMapper mapper;
 
-    public RegisterExpenseUseCase(IExpensesRepository expensesRepository, IUnitOfWork unitOfWork)
+    public RegisterExpenseUseCase(IExpensesRepository expensesRepository, IUnitOfWork unitOfWork, IMapper mapper)
     {
         this.expensesRepository = expensesRepository;
         this.unitOfWork = unitOfWork;
+        this.mapper = mapper;
     }
 
-    public async Task<RegisterExpenseRequest> Execute(RegisterExpenseRequest request)
+    public async Task<RegisteredExpenseResponse> Execute(RegisterExpenseRequest request)
     {
         Validate(request);
-
-        var entity = new Expense()
-        {
-            Title = request.Title,
-            Description = request.Description,
-            Date = request.Date,
-            Amount = request.Amount,
-            PaymentType = (PaymentType)request.PaymentType
-        };
+        
+        var entity = mapper.Map<Expense>(request);
 
         await expensesRepository.AddAsync(entity);
         await unitOfWork.Commit();
         
-        return new RegisterExpenseRequest();
+        return mapper.Map<RegisteredExpenseResponse>(entity);
     }
 
     private static void Validate(RegisterExpenseRequest request)

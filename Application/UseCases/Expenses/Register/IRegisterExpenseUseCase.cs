@@ -1,8 +1,9 @@
 using Communication.Requests;
+using Communication.Responses;
 
 namespace Application.UseCases.Expenses.Register;
 
 public interface IRegisterExpenseUseCase
 {
-    Task<RegisterExpenseRequest> Execute(RegisterExpenseRequest request);
+    Task<RegisteredExpenseResponse> Execute(RegisterExpenseRequest request);
 }
