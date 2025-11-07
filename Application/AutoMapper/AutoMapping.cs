@@ -21,5 +21,10 @@ public class AutoMapping : Profile
     private void EntityToResponse()
     {
         CreateMap<Expense, RegisteredExpenseResponse>();
+        CreateMap<Expense, ShortExpenseResponse>();
+        CreateMap<IEnumerable<Expense>, ExpensesResponse>()
+            .ForMember(
+                dest => dest.Expenses,
+                opt => opt.MapFrom(src => src));
     }   
 }
