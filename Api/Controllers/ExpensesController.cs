@@ -1,4 +1,5 @@
 using Application.UseCases.Expenses.GetAll;
+using Application.UseCases.Expenses.GetById;
 using Application.UseCases.Expenses.Register;
 using Communication.Requests;
 using Communication.Responses;
@@ -30,7 +31,18 @@ public class ExpensesController : ControllerBase
         var response = await useCase.Execute();
         if (response.Expenses.Any())
             return Ok(response);
-        
+
         return NoContent();
+    }
+
+    [HttpGet("{id:int}")]
+    [ProducesResponseType(typeof(ExpensesResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetById(
+        [FromServices] IGetExpenseByIdUseCase useCase,
+        [FromRoute] int id)
+    {
+        var response = await useCase.Execute(id);
+        return Ok(response);
     }
 }
