@@ -19,8 +19,8 @@ public class GetAllExpensesUseCase : IGetAllExpensesUseCase
 
     public async Task<ExpensesResponse> Execute()
     {
-       var response = await expensesRepository.GetAllAsync();
+       var result = await expensesRepository.GetAllAsync();
        
-       return mapper.Map<ExpensesResponse>(response);
+       return mapper.Map<ExpensesResponse>(result);
     }
 }

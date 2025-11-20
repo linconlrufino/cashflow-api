@@ -1,13 +1,15 @@
 using AutoMapper;
 using Communication.Responses;
 using Domain.Repositories.Expenses;
+using Exception;
+using Exception.ExceptionsBase;
 
 namespace Application.UseCases.Expenses.GetById;
 
 public class GetExpenseByIdUseCase : IGetExpenseByIdUseCase
 {
-    IExpensesRepository expensesRepository;
-    IMapper mapper;
+    private readonly IExpensesRepository expensesRepository;
+    private readonly IMapper mapper;
 
     public GetExpenseByIdUseCase(
         IExpensesRepository expensesRepository,
@@ -17,9 +19,12 @@ public class GetExpenseByIdUseCase : IGetExpenseByIdUseCase
         this.mapper = mapper;
     }
     
-    public async Task<ShortExpenseResponse> Execute(int expenseId)
+    public async Task<ExpenseResponse> Execute(long id)
     {
-        var response = await expensesRepository.GetByIdAsync(expenseId);
-        return mapper.Map<ShortExpenseResponse>(response);
+        var result = await expensesRepository.GetByIdAsync(id);
+        if (result is null)
+            throw new NotFoundException(ResourcesErrorMessages.EXPENSE_NOT_FOUND);
+        
+        return mapper.Map<ExpenseResponse>(result);
     }
 }

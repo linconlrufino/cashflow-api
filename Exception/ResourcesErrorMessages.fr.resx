@@ -34,4 +34,8 @@
     <data name="AMOUNT_MUST_BE_GREATER_THAN_ZERO" xml:space="preserve">
         <value>Le montant doit être supérieur à zéro.</value>
     </data>
+    <data name="EXPENSE_NOT_FOUND" xml:space="preserve">
+        <value>Dépense introuvable.
+</value>
+    </data>
 </root>

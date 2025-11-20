@@ -35,12 +35,12 @@ public class ExpensesController : ControllerBase
         return NoContent();
     }
 
-    [HttpGet("{id:int}")]
-    [ProducesResponseType(typeof(ExpensesResponse), StatusCodes.Status200OK)]
+    [HttpGet("{id:long}")]
+    [ProducesResponseType(typeof(ExpenseResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(
         [FromServices] IGetExpenseByIdUseCase useCase,
-        [FromRoute] int id)
+        [FromRoute] long id)
     {
         var response = await useCase.Execute(id);
         return Ok(response);

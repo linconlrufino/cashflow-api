@@ -4,5 +4,5 @@ namespace Application.UseCases.Expenses.GetById;
 
 public interface IGetExpenseByIdUseCase
 {
-    Task<ShortExpenseResponse> Execute(int expenseId);
+    Task<ExpenseResponse> Execute(long id);
 }

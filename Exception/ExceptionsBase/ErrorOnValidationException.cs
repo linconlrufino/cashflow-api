@@ -2,7 +2,7 @@ namespace Exception.ExceptionsBase;
 
 public class ErrorOnValidationException : CashFlowException
 {
-    public ErrorOnValidationException(List<string> errorMessages)
+    public ErrorOnValidationException(List<string> errorMessages) : base(string.Empty)
     {
         Errors = errorMessages;
     }

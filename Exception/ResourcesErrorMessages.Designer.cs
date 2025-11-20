@@ -25,7 +25,7 @@ namespace Exception {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static System.Resources.ResourceManager ResourceManager {
+        internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
                     System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Exception.ResourcesErrorMessages", typeof(ResourcesErrorMessages).Assembly);
@@ -36,7 +36,7 @@ namespace Exception {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static System.Globalization.CultureInfo Culture {
+        internal static System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -44,34 +44,40 @@ namespace Exception {
                 resourceCulture = value;
             }
         }
-        
+
         public static string UNKNOWN_ERROR {
             get {
                 return ResourceManager.GetString("UNKNOWN_ERROR", resourceCulture);
             }
         }
-        
+
         public static string TITLE_REQUIRED {
             get {
                 return ResourceManager.GetString("TITLE_REQUIRED", resourceCulture);
             }
         }
-        
+
         public static string AMOUNT_MUST_BE_GREATER_THAN_ZERO {
             get {
                 return ResourceManager.GetString("AMOUNT_MUST_BE_GREATER_THAN_ZERO", resourceCulture);
             }
         }
-        
+
         public static string EXPENSES_CANNOT_BE_FOR_THE_FUTURE {
             get {
                 return ResourceManager.GetString("EXPENSES_CANNOT_BE_FOR_THE_FUTURE", resourceCulture);
             }
         }
-        
+
         public static string PAYMENT_TYPE_IS_NOT_VALID {
             get {
                 return ResourceManager.GetString("PAYMENT_TYPE_IS_NOT_VALID", resourceCulture);
+            }
+        }
+        
+        public static string EXPENSE_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("EXPENSE_NOT_FOUND", resourceCulture);
             }
         }
     }

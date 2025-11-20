@@ -23,7 +23,8 @@ public class AutoMapping : Profile
         CreateMap<Expense, RegisteredExpenseResponse>();
         
         
-        CreateMap<Expense, ShortExpenseResponse>();
+        CreateMap<Expense, ShortExpenseResponse>();        
+        CreateMap<Expense, ExpenseResponse>();
         CreateMap<IEnumerable<Expense>, ExpensesResponse>()
             .ForMember(
                 dest => dest.Expenses,
