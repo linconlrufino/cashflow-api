@@ -6,20 +6,20 @@ namespace Application.UseCases.Expenses.GetAll;
 
 public class GetAllExpensesUseCase : IGetAllExpensesUseCase
 {
-    private readonly IExpensesRepository expensesRepository;
+    private readonly IExpensesReadOnlyRepository repository;
     private readonly IMapper mapper;
 
     public GetAllExpensesUseCase(
-        IExpensesRepository expensesRepository,
+        IExpensesReadOnlyRepository repository,
         IMapper mapper)
     {
-        this.expensesRepository = expensesRepository;
+        this.repository = repository;
         this.mapper = mapper;
     }
 
     public async Task<ExpensesResponse> Execute()
     {
-       var result = await expensesRepository.GetAllAsync();
+       var result = await repository.GetAllAsync();
        
        return mapper.Map<ExpensesResponse>(result);
     }

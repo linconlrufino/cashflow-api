@@ -10,13 +10,16 @@ namespace Application.UseCases.Expenses.Register;
 
 public class RegisterExpenseUseCase : IRegisterExpenseUseCase
 {
-    private readonly IExpensesRepository expensesRepository;
+    private readonly IExpensesWriteOnlyRepository repository;
     private readonly IUnitOfWork unitOfWork;
     private readonly IMapper mapper;
 
-    public RegisterExpenseUseCase(IExpensesRepository expensesRepository, IUnitOfWork unitOfWork, IMapper mapper)
+    public RegisterExpenseUseCase(
+        IExpensesWriteOnlyRepository repository,
+        IUnitOfWork unitOfWork,
+        IMapper mapper)
     {
-        this.expensesRepository = expensesRepository;
+        this.repository = repository;
         this.unitOfWork = unitOfWork;
         this.mapper = mapper;
     }
@@ -27,7 +30,7 @@ public class RegisterExpenseUseCase : IRegisterExpenseUseCase
         
         var entity = mapper.Map<Expense>(request);
 
-        await expensesRepository.AddAsync(entity);
+        await repository.AddAsync(entity);
         await unitOfWork.Commit();
         
         return mapper.Map<RegisteredExpenseResponse>(entity);

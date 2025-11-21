@@ -8,20 +8,20 @@ namespace Application.UseCases.Expenses.GetById;
 
 public class GetExpenseByIdUseCase : IGetExpenseByIdUseCase
 {
-    private readonly IExpensesRepository expensesRepository;
+    private readonly IExpensesReadOnlyRepository repository;
     private readonly IMapper mapper;
 
     public GetExpenseByIdUseCase(
-        IExpensesRepository expensesRepository,
+        IExpensesReadOnlyRepository repository,
         IMapper mapper)
     {
-        this.expensesRepository = expensesRepository;
+        this.repository = repository;
         this.mapper = mapper;
     }
     
     public async Task<ExpenseResponse> Execute(long id)
     {
-        var result = await expensesRepository.GetByIdAsync(id);
+        var result = await repository.GetByIdAsync(id);
         if (result is null)
             throw new NotFoundException(ResourcesErrorMessages.EXPENSE_NOT_FOUND);
         
