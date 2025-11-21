@@ -1,3 +1,4 @@
+using Application.UseCases.Expenses.Delete;
 using Application.UseCases.Expenses.GetAll;
 using Application.UseCases.Expenses.GetById;
 using Application.UseCases.Expenses.Register;
@@ -37,12 +38,23 @@ public class ExpensesController : ControllerBase
 
     [HttpGet("{id:long}")]
     [ProducesResponseType(typeof(ExpenseResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse),StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(
         [FromServices] IGetExpenseByIdUseCase useCase,
         [FromRoute] long id)
     {
         var response = await useCase.Execute(id);
         return Ok(response);
+    }
+
+    [HttpDelete("{id:long}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ErrorResponse),StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Delete(
+        [FromServices] IDeleteExpenseUseCase useCase,
+        [FromRoute] long id)
+    {
+        await useCase.Execute(id);
+        return NoContent();
     }
 }
