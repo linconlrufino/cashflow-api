@@ -18,42 +18,11 @@ public class ExceptionFilter : IExceptionFilter
 
     private static void HandleProjectException(ExceptionContext context)
     {
-        switch (context.Exception)
-        {
-            case ErrorOnValidationException errorOnValidationException:
-                ThrowErrorOnValidationException(context, errorOnValidationException);
-                break;
-            case NotFoundException notFoundException:
-                ThrowNotFoundException(context, notFoundException);
-                break;
-            default:
-                ThrowBadRequestException(context);
-                break;
-        }
-    }
+        var cashFlowException = context.Exception as CashFlowException;
+        var errorResponse = new ErrorResponse(cashFlowException!.GetErrors());
 
-    private static void ThrowErrorOnValidationException(ExceptionContext context,ErrorOnValidationException errorOnValidationException)
-    {
-        var errorResponse = new ErrorResponse(errorOnValidationException.Errors);
-
-        context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-        context.Result = new BadRequestObjectResult(errorResponse);
-    }
-    
-    private static void ThrowNotFoundException(ExceptionContext context, NotFoundException notFoundException)
-    {
-        var errorResponse = new ErrorResponse(notFoundException.Message);
-
-        context.HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
-        context.Result = new NotFoundObjectResult(errorResponse);
-    }
-    
-    private static void ThrowBadRequestException(ExceptionContext context)
-    {
-        var errorResponse = new ErrorResponse(context.Exception.Message);
-
-        context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-        context.Result = new BadRequestObjectResult(errorResponse);
+        context.HttpContext.Response.StatusCode = cashFlowException.StatusCode;
+        context.Result = new ObjectResult(errorResponse);
     }
     
     private static void ThrowUnknownError(ExceptionContext context)
