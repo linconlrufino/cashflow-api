@@ -2,6 +2,7 @@ using Application.UseCases.Expenses.Delete;
 using Application.UseCases.Expenses.GetAll;
 using Application.UseCases.Expenses.GetById;
 using Application.UseCases.Expenses.Register;
+using Application.UseCases.Expenses.Update;
 using Communication.Requests;
 using Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ public class ExpensesController : ControllerBase
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
     public async Task<ActionResult> Register(
         [FromServices] IRegisterExpenseUseCase useCase,
-        [FromBody] RegisterExpenseRequest request)
+        [FromBody] ExpenseRequest request)
     {
         var response = await useCase.Execute(request);
         return Created(string.Empty, response);
@@ -55,6 +56,19 @@ public class ExpensesController : ControllerBase
         [FromRoute] long id)
     {
         await useCase.Execute(id);
+        return NoContent();
+    }
+
+    [HttpPut("{id:long}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ErrorResponse),StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse),StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Update(
+        [FromServices] IUpdateExpenseUseCase useCase,
+        [FromRoute] long id,
+        [FromBody] ExpenseRequest request)
+    {
+        await useCase.Execute(id, request);
         return NoContent();
     }
 }

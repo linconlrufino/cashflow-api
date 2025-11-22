@@ -1,4 +1,4 @@
-using Application.UseCases.Expenses.Register;
+using Application.UseCases.Expenses;
 using CommonTestUtilities.Requests;
 using Communication.Enums;
 using Exception;
@@ -11,7 +11,7 @@ public class RegisterExpenseValidatorTests
     public void Success()
     {
         //Arrange
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var request = RegisterExpenseRequestBuilder.Build();
         
         //Act
@@ -27,7 +27,7 @@ public class RegisterExpenseValidatorTests
     [InlineData(" ")]
     public void Error_Title_Empty(string title)
     {
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var request = RegisterExpenseRequestBuilder.Build();
         request.Title = title;
 
@@ -43,7 +43,7 @@ public class RegisterExpenseValidatorTests
     [InlineData(-1)]
     public void Error_Amount_GreaterThan_Zero(decimal amount)
     {
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var request = RegisterExpenseRequestBuilder.Build();
         request.Amount = amount;
 
@@ -57,7 +57,7 @@ public class RegisterExpenseValidatorTests
     [Fact]
     public void Error_Date_Cannot_Be_In_The_Future()
     {
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var request = RegisterExpenseRequestBuilder.Build();
         request.Date = DateTime.Today.AddDays(1);
 
@@ -71,7 +71,7 @@ public class RegisterExpenseValidatorTests
     [Fact]
     public void Error_PaymentType_Invalid()
     {
-        var validator = new RegisterExpenseValidator();
+        var validator = new ExpenseValidator();
         var request = RegisterExpenseRequestBuilder.Build();
         request.PaymentType = (PaymentType)99;
 

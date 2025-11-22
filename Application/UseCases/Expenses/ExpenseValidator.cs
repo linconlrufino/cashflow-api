@@ -2,11 +2,11 @@ using Communication.Requests;
 using Exception;
 using FluentValidation;
 
-namespace Application.UseCases.Expenses.Register;
+namespace Application.UseCases.Expenses;
 
-public class RegisterExpenseValidator : AbstractValidator<RegisterExpenseRequest>
+public class ExpenseValidator : AbstractValidator<ExpenseRequest>
 {
-    public RegisterExpenseValidator()
+    public ExpenseValidator()
     {
         RuleFor(expense => expense.Title).NotEmpty().WithMessage(ResourcesErrorMessages.TITLE_REQUIRED);
         RuleFor(expense => expense.Amount).GreaterThan(0).WithMessage(ResourcesErrorMessages.AMOUNT_MUST_BE_GREATER_THAN_ZERO);
