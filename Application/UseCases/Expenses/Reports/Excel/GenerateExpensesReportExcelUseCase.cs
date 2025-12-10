@@ -21,7 +21,7 @@ public class GenerateExpensesReportExcelUseCase : IGenerateExpensesReportExcelUs
         if (!expenses.Any())
             return [];
         
-        var workbook = new XLWorkbook();
+        using var workbook = new XLWorkbook();
         workbook.Author = "cashflow";
         workbook.Style.Font.FontSize = 12;
         workbook.Style.Font.FontName = "Calibri";
