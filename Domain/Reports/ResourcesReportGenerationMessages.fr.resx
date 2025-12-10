@@ -39,4 +39,7 @@
     <data name="CASH" xml:space="preserve">
         <value>Espèces</value>
     </data>
+    <data name="CURRENCY_SYMBOL" xml:space="preserve">
+        <value>€</value>
+    </data>
 </root>

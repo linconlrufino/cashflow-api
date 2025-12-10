@@ -36,7 +36,7 @@ namespace Domain.Reports {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static System.Globalization.CultureInfo Culture {
+        public static System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -96,6 +96,12 @@ namespace Domain.Reports {
         public static string ELETRONIC_TRANSFER {
             get {
                 return ResourceManager.GetString("ELETRONIC_TRANSFER", resourceCulture);
+            }
+        }
+        
+        public static string CURRENCY_SYMBOL {
+            get {
+                return ResourceManager.GetString("CURRENCY_SYMBOL", resourceCulture);
             }
         }
     }

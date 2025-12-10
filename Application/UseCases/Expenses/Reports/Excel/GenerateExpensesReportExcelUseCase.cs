@@ -36,11 +36,16 @@ public class GenerateExpensesReportExcelUseCase : IGenerateExpensesReportExcelUs
             worksheet.Cell($"A{raw}").Value = expense.Title;
             worksheet.Cell($"B{raw}").Value = expense.Date.ToString("dd/MM/yy");
             worksheet.Cell($"C{raw}").Value = ConvertPaymentType(expense.PaymentType);
+            
             worksheet.Cell($"D{raw}").Value = expense.Amount;
+            worksheet.Cell($"D{raw}").Style.NumberFormat.Format = $"-{ResourcesReportGenerationMessages.CURRENCY_SYMBOL} #,##0.00";
+            
             worksheet.Cell($"E{raw}").Value = expense.Description;
             raw++;
         }
 
+        worksheet.Columns().AdjustToContents();        
+        
         var file = new MemoryStream();
         workbook.SaveAs(file);
         
