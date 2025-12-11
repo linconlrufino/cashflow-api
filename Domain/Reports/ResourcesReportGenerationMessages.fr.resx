@@ -42,4 +42,11 @@
     <data name="CURRENCY_SYMBOL" xml:space="preserve">
         <value>€</value>
     </data>
+    <data name="EXPENSES_FOR" xml:space="preserve">
+        <value>Dépenses pour
+</value>
+    </data>
+    <data name="TOTAL_SPENT_IN" xml:space="preserve">
+        <value>Total dépensé en {0}</value>
+    </data>
 </root>

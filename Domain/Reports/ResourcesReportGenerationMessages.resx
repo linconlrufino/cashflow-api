@@ -54,4 +54,10 @@
     <data name="CURRENCY_SYMBOL" xml:space="preserve">
         <value>$</value>
     </data>
+    <data name="EXPENSES_FOR" xml:space="preserve">
+        <value>Expenses For</value>
+    </data>
+    <data name="TOTAL_SPENT_IN" xml:space="preserve">
+        <value>Total spent in {0}</value>
+    </data>
 </root>

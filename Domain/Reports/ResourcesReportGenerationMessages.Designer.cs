@@ -21,11 +21,11 @@ namespace Domain.Reports {
         private static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResourcesReportGenerationMessages() {
+        public ResourcesReportGenerationMessages() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static System.Resources.ResourceManager ResourceManager {
+        public static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
                     System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Domain.Reports.ResourcesReportGenerationMessages", typeof(ResourcesReportGenerationMessages).Assembly);
@@ -102,6 +102,18 @@ namespace Domain.Reports {
         public static string CURRENCY_SYMBOL {
             get {
                 return ResourceManager.GetString("CURRENCY_SYMBOL", resourceCulture);
+            }
+        }
+        
+        public static string EXPENSES_FOR {
+            get {
+                return ResourceManager.GetString("EXPENSES_FOR", resourceCulture);
+            }
+        }
+        
+        public static string TOTAL_SPENT_IN {
+            get {
+                return ResourceManager.GetString("TOTAL_SPENT_IN", resourceCulture);
             }
         }
     }
