@@ -1,5 +1,6 @@
 using ClosedXML.Excel;
 using Domain.Enums;
+using Domain.Extensions;
 using Domain.Reports;
 using Domain.Repositories.Expenses;
 
@@ -35,7 +36,7 @@ public class GenerateExpensesReportExcelUseCase : IGenerateExpensesReportExcelUs
         {           
             worksheet.Cell($"A{raw}").Value = expense.Title;
             worksheet.Cell($"B{raw}").Value = expense.Date.ToString("dd/MM/yy");
-            worksheet.Cell($"C{raw}").Value = ConvertPaymentType(expense.PaymentType);
+            worksheet.Cell($"C{raw}").Value = expense.PaymentType.PaymentTypeToString();
             
             worksheet.Cell($"D{raw}").Value = expense.Amount;
             worksheet.Cell($"D{raw}").Style.NumberFormat.Format = $"-{ResourcesReportGenerationMessages.CURRENCY_SYMBOL} #,##0.00";
@@ -65,17 +66,5 @@ public class GenerateExpensesReportExcelUseCase : IGenerateExpensesReportExcelUs
         
         worksheet.Cells("A1,B1,C1,E1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
         worksheet.Cell("D1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
-    }
-
-    private string ConvertPaymentType(PaymentType paymentType)
-    {
-        return paymentType switch
-        {
-            PaymentType.Cash => ResourcesReportGenerationMessages.CASH,
-            PaymentType.CreditCard => ResourcesReportGenerationMessages.CREDIT_CARD,
-            PaymentType.DebitCard => ResourcesReportGenerationMessages.DEBIT_CARD,
-            PaymentType.EletronicTransfer => ResourcesReportGenerationMessages.ELETRONIC_TRANSFER,
-            _ => string.Empty
-        };
     }
 }
