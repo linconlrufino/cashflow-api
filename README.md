@@ -2,12 +2,7 @@
 
 REST API for cash flow management, built with **.NET / C#**, following clean architecture and best practices.
 
----
-
-### 🚀 Features
-
 - RESTful API
-- Cash flow CRUD operations
 - Data validation
 - Centralized exception handling
 - Layered architecture
