@@ -3,6 +3,7 @@ using Communication.Requests;
 using Domain.Entities;
 using Domain.Repositories;
 using Domain.Repositories.Expenses;
+using Domain.Services.LoggedUser;
 using Exception;
 using Exception.ExceptionsBase;
 
@@ -13,22 +14,29 @@ public class UpdateExpenseUseCase : IUpdateExpenseUseCase
     private readonly IMapper mapper;
     private readonly IUnitOfWork unitOfWork;
     private readonly IExpensesUpdateOnlyRepository repository;
+    private readonly ILoggedUser loggedUser;
 
     public UpdateExpenseUseCase(
         IMapper mapper,
         IUnitOfWork unitOfWork,
-        IExpensesUpdateOnlyRepository repository)
+        IExpensesUpdateOnlyRepository repository,
+        ILoggedUser loggedUser)
     {
         this.mapper = mapper;
         this.unitOfWork = unitOfWork;
         this.repository = repository;
+        this.loggedUser = loggedUser;
     }
 
     public async Task Execute(long id, ExpenseRequest request)
     {
         Validate(request);
-        var expense = await repository.GetByIdAsync(id);
-        if (expense is null)
+        
+        var loggedUserInfo = await loggedUser.Get();
+        
+        var expense = await repository.GetByIdAsync(loggedUserInfo.Id, id);
+        
+        if (expense is null )
             throw new NotFoundException(ResourcesErrorMessages.EXPENSE_NOT_FOUND);
         
         mapper.Map(request, expense);

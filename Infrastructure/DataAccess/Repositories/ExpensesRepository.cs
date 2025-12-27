@@ -51,9 +51,9 @@ internal class ExpensesRepository : IExpensesReadOnlyRepository, IExpensesWriteO
             .ToArrayAsync();
     }
 
-    async Task<Expense?> IExpensesUpdateOnlyRepository.GetByIdAsync(long id)
+    async Task<Expense?> IExpensesUpdateOnlyRepository.GetByIdAsync(long userId, long id)
     {
-        return await dbContext.Expenses.FirstOrDefaultAsync(expense => expense.Id == id);
+        return await dbContext.Expenses.FirstOrDefaultAsync(expense => expense.Id == id && expense.UserId == userId);
     }
     
     public void Update(Expense expense)
