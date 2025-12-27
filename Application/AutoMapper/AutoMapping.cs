@@ -16,18 +16,19 @@ public class AutoMapping : Profile
     private void RequestToEntity()
     {
         CreateMap<ExpenseRequest, Expense>();
+        CreateMap<RegisterUserRequest, User>()
+            .ForMember(dest => dest.Password, config => config.Ignore());
     }
 
     private void EntityToResponse()
     {
         CreateMap<Expense, RegisteredExpenseResponse>();
         
-        
         CreateMap<Expense, ShortExpenseResponse>();        
         CreateMap<Expense, ExpenseResponse>();
         CreateMap<IEnumerable<Expense>, ExpensesResponse>()
             .ForMember(
                 dest => dest.Expenses,
-                opt => opt.MapFrom(src => src));
+                config => config.MapFrom(src => src));
     }   
 }
