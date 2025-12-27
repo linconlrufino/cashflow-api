@@ -5,5 +5,5 @@ namespace Domain.Repositories.Expenses;
 public interface IExpensesWriteOnlyRepository
 {
     Task AddAsync(Expense expense);
-    Task<bool> DeleteAsync(long id);
+    Task<bool> DeleteAsync(long userId,long id);
 }
