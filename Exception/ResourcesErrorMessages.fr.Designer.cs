@@ -80,5 +80,35 @@ namespace Exception {
                 return ResourceManager.GetString("EXPENSE_NOT_FOUND", resourceCulture);
             }
         }
+        
+        internal static string NAME_EMPTY {
+            get {
+                return ResourceManager.GetString("NAME_EMPTY", resourceCulture);
+            }
+        }
+        
+        internal static string EMAIL_EMPTY {
+            get {
+                return ResourceManager.GetString("EMAIL_EMPTY", resourceCulture);
+            }
+        }
+        
+        internal static string EMAIL_INVALID {
+            get {
+                return ResourceManager.GetString("EMAIL_INVALID", resourceCulture);
+            }
+        }
+        
+        internal static string INVALID_PASSWORD {
+            get {
+                return ResourceManager.GetString("INVALID_PASSWORD", resourceCulture);
+            }
+        }
+        
+        internal static string EMAIL_ALREADY_REGISTERED {
+            get {
+                return ResourceManager.GetString("EMAIL_ALREADY_REGISTERED", resourceCulture);
+            }
+        }
     }
 }
