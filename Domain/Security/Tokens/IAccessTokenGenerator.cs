@@ -1,6 +1,6 @@
 using Domain.Entities;
 
-namespace Domain.Security.Token;
+namespace Domain.Security.Tokens;
 
 public interface IAccessTokenGenerator
 {

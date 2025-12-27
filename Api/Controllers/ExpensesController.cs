@@ -5,12 +5,14 @@ using Application.UseCases.Expenses.Register;
 using Application.UseCases.Expenses.Update;
 using Communication.Requests;
 using Communication.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlowApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class ExpensesController : ControllerBase
 {
     [HttpPost]
