@@ -2,8 +2,10 @@ using Domain.Repositories;
 using Domain.Repositories.Expenses;
 using Domain.Repositories.Users;
 using Domain.Security.Cryptography;
+using Domain.Security.Tokens;
 using Infrastructure.DataAccess;
 using Infrastructure.DataAccess.Repositories;
+using Infrastructure.Security.Tokens;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,8 +18,8 @@ public static class DependencyInjectionExtension
     {
         AddDbContext(services, configuration);
         AddRepositories(services);
-
-        services.AddScoped<IPasswordEncripter, Security.BCrypt>();
+        AddCryptography(services);
+        AddToken(services, configuration);
     }
 
     private static void AddRepositories(IServiceCollection services)
@@ -36,5 +38,18 @@ public static class DependencyInjectionExtension
         var serverVersion = new MySqlServerVersion(new Version(8, 0, 43));
 
         services.AddDbContext<CashFlowDbContext>(config => config.UseMySql(connectionString, serverVersion));
+    }
+    
+    private static void AddCryptography(IServiceCollection services)
+    {
+        services.AddScoped<IPasswordEncripter, Security.BCrypt>();
+    }
+    
+    private static void AddToken(IServiceCollection services, IConfiguration configuration)
+    {
+        var expirationTimeMinutes = configuration.GetValue<uint>("Settings:Jwt:ExpiresMinutes");
+        var signingKey = configuration.GetValue<string>("Settings:Jwt:SigningKey");
+
+        services.AddScoped<IAccessTokenGenerator>(config => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
     }
 }
