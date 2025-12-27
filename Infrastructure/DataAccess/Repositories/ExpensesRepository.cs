@@ -41,12 +41,14 @@ internal class ExpensesRepository : IExpensesReadOnlyRepository, IExpensesWriteO
             .FirstOrDefaultAsync(expense => expense.Id == id && expense.UserId == userId);
     }
 
-    public async Task<IEnumerable<Expense>> FilterByMonth(DateOnly date)
+    public async Task<IEnumerable<Expense>> FilterByMonth(long userId, DateOnly date)
     {
         return await dbContext.Expenses
             .AsNoTracking()
-            .Where(expense => expense.Date.Month == date.Month &&
-                              expense.Date.Year == date.Year)
+            .Where(expense => 
+                expense.UserId == userId && 
+                expense.Date.Month == date.Month && 
+                expense.Date.Year == date.Year)
             .OrderBy(expense => expense.Date)   
             .ToArrayAsync();
     }

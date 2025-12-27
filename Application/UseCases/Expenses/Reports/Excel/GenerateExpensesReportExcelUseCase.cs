@@ -3,27 +3,34 @@ using Domain.Enums;
 using Domain.Extensions;
 using Domain.Reports;
 using Domain.Repositories.Expenses;
+using Domain.Services.LoggedUser;
 
 namespace Application.UseCases.Expenses.Reports.Excel;
 
 public class GenerateExpensesReportExcelUseCase : IGenerateExpensesReportExcelUseCase
 {
     private readonly IExpensesReadOnlyRepository repository;
-    
-    public GenerateExpensesReportExcelUseCase(IExpensesReadOnlyRepository repository)
+    private readonly ILoggedUser loggedUser;
+
+    public GenerateExpensesReportExcelUseCase(
+        IExpensesReadOnlyRepository repository,
+        ILoggedUser loggedUser)
     {
         this.repository = repository;
+        this.loggedUser = loggedUser;
     }
     
     public async Task<byte[]> Execute(DateOnly month)
     {
-        var expenses = await repository.FilterByMonth(month);
+        var loggedUserInfo = await loggedUser.Get();
+
+        var expenses = await repository.FilterByMonth(loggedUserInfo.Id, month);
 
         if (!expenses.Any())
             return [];
         
         using var workbook = new XLWorkbook();
-        workbook.Author = "cashflow";
+        workbook.Author = loggedUserInfo.Name;
         workbook.Style.Font.FontSize = 12;
         workbook.Style.Font.FontName = "Calibri";
         
