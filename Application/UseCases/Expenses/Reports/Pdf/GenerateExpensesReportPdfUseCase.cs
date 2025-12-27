@@ -1,7 +1,6 @@
 using System.Reflection;
 using Application.UseCases.Expenses.Reports.Pdf.Colors;
 using Application.UseCases.Expenses.Reports.Pdf.Fonts;
-using Domain.Entities;
 using Domain.Extensions;
 using Domain.Reports;
 using Domain.Repositories.Expenses;
