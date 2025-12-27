@@ -29,16 +29,16 @@ internal class ExpensesRepository : IExpensesReadOnlyRepository, IExpensesWriteO
        return true;
     }
 
-    public async Task<IEnumerable<Expense>> GetAllAsync()
+    public async Task<IEnumerable<Expense>> GetAllAsync(long userId)
     {
-        return await dbContext.Expenses.AsNoTracking().ToArrayAsync();
+        return await dbContext.Expenses.AsNoTracking().Where(expense => expense.UserId == userId).ToArrayAsync();
     }
 
-    async Task<Expense?> IExpensesReadOnlyRepository.GetByIdAsync(long id)
+    async Task<Expense?> IExpensesReadOnlyRepository.GetByIdAsync(long userId, long id)
     {
         return await dbContext.Expenses
             .AsNoTracking()
-            .FirstOrDefaultAsync(expense => expense.Id == id);
+            .FirstOrDefaultAsync(expense => expense.Id == id && expense.UserId == userId);
     }
 
     public async Task<IEnumerable<Expense>> FilterByMonth(DateOnly date)
