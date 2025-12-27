@@ -3,9 +3,11 @@ using Domain.Repositories.Expenses;
 using Domain.Repositories.Users;
 using Domain.Security.Cryptography;
 using Domain.Security.Tokens;
+using Domain.Services.LoggedUser;
 using Infrastructure.DataAccess;
 using Infrastructure.DataAccess.Repositories;
 using Infrastructure.Security.Tokens;
+using Infrastructure.Services.LoggedUser;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -51,5 +53,6 @@ public static class DependencyInjectionExtension
         var signingKey = configuration.GetValue<string>("Settings:Jwt:SigningKey");
 
         services.AddScoped<IAccessTokenGenerator>(config => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
+        services.AddScoped<ILoggedUser, LoggedUser>();
     }
 }

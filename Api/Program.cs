@@ -2,6 +2,8 @@ using System.Text;
 using Application;
 using CashFlowApi.Filters;
 using CashFlowApi.Middleware;
+using CashFlowApi.Token;
+using Domain.Security.Tokens;
 using Infrastructure;
 using Infrastructure.Migrations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -48,6 +50,8 @@ builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthentication(config =>
 {

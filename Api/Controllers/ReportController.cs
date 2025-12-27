@@ -2,7 +2,6 @@ using System.Net.Mime;
 using Application.UseCases.Expenses.Reports.Excel;
 using Application.UseCases.Expenses.Reports.Pdf;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace CashFlowApi.Controllers;
 
