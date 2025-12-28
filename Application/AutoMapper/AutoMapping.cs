@@ -3,6 +3,7 @@ using Communication.Enums;
 using Communication.Requests.Expense;
 using Communication.Requests.User;
 using Communication.Responses;
+using Communication.Responses.Expense;
 using Communication.Responses.User;
 using Domain.Entities;
 
@@ -36,11 +37,13 @@ public class AutoMapping : Profile
 
     private void EntityToResponse()
     {
+        CreateMap<Expense, ExpenseResponse>()
+            .ForMember(dest => dest.Tags,
+                config => config.MapFrom(src => src.Tags.Select(tag => tag.TagType)));
+
         CreateMap<User, UserProfileResponse>();
-        
         CreateMap<Expense, RegisteredExpenseResponse>();
         CreateMap<Expense, ShortExpenseResponse>();        
-        CreateMap<Expense, ExpenseResponse>();
         CreateMap<IEnumerable<Expense>, ExpensesResponse>()
             .ForMember(
                 dest => dest.Expenses,

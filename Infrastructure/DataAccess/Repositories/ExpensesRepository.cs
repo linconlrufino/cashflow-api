@@ -1,6 +1,7 @@
 using Domain.Entities;
 using Domain.Repositories.Expenses;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Infrastructure.DataAccess.Repositories;
 
@@ -36,11 +37,20 @@ internal class ExpensesRepository : IExpensesReadOnlyRepository, IExpensesWriteO
 
     async Task<Expense?> IExpensesReadOnlyRepository.GetByIdAsync(long userId, long id)
     {
-        return await dbContext.Expenses
+        return await GetFullExpense()
             .AsNoTracking()
             .FirstOrDefaultAsync(expense => expense.Id == id && expense.UserId == userId);
     }
-
+    async Task<Expense?> IExpensesUpdateOnlyRepository.GetByIdAsync(long userId, long id)
+    {
+        return await GetFullExpense().FirstOrDefaultAsync(expense => expense.Id == id && expense.UserId == userId);
+    }
+    
+    public void Update(Expense expense)
+    {
+        dbContext.Expenses.Update(expense);
+    }
+    
     public async Task<IEnumerable<Expense>> FilterByMonth(long userId, DateOnly date)
     {
         return await dbContext.Expenses
@@ -53,13 +63,9 @@ internal class ExpensesRepository : IExpensesReadOnlyRepository, IExpensesWriteO
             .ToArrayAsync();
     }
 
-    async Task<Expense?> IExpensesUpdateOnlyRepository.GetByIdAsync(long userId, long id)
+    public IIncludableQueryable<Expense, ICollection<Tag>> GetFullExpense()
     {
-        return await dbContext.Expenses.FirstOrDefaultAsync(expense => expense.Id == id && expense.UserId == userId);
-    }
-    
-    public void Update(Expense expense)
-    {
-        dbContext.Expenses.Update(expense);
+        return dbContext.Expenses
+            .Include(expense => expense.Tags);
     }
 }

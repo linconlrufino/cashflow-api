@@ -6,6 +6,7 @@ using Application.UseCases.Expenses.Update;
 using Communication.Requests;
 using Communication.Requests.Expense;
 using Communication.Responses;
+using Communication.Responses.Expense;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

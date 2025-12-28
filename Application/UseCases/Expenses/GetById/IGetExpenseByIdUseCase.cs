@@ -1,4 +1,5 @@
 using Communication.Responses;
+using Communication.Responses.Expense;
 
 namespace Application.UseCases.Expenses.GetById;
 

@@ -1,5 +1,6 @@
 using AutoMapper;
 using Communication.Responses;
+using Communication.Responses.Expense;
 using Domain.Repositories.Expenses;
 using Domain.Services.LoggedUser;
 using Exception;
