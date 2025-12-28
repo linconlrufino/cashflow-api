@@ -14,7 +14,7 @@ public class DeleteUserAccountUseCase : IDeleteUserAccountUseCase
         ILoggedUser loggedUser,
         IUsersWriteOnlyRepository usersWriteOnlyRepository,
         IUnitOfWork unitOfWork)
-    {
+    { 
         this.loggedUser = loggedUser;
         this.usersWriteOnlyRepository = usersWriteOnlyRepository;
         this.unitOfWork = unitOfWork;
