@@ -1,5 +1,5 @@
 using AutoMapper;
-using Communication.Requests;
+using Communication.Enums;
 using Communication.Requests.Expense;
 using Communication.Requests.User;
 using Communication.Responses;
@@ -18,10 +18,19 @@ public class AutoMapping : Profile
 
     private void RequestToEntity()
     {
-        CreateMap<ExpenseRequest, Expense>();
-        
         CreateMap<RegisterUserRequest, User>()
-            .ForMember(dest => dest.Password, config => config.Ignore());
+            .ForMember(dest => dest.Password,
+                config => config.Ignore());
+
+        CreateMap<ExpenseRequest, Expense>()
+            .ForMember(dest => dest.Tags, 
+                config => config.MapFrom(
+                    src => src.Tags.Distinct()));
+                
+        CreateMap<TagType, Tag>()
+            .ForMember(dest => dest.TagType, 
+                config => config.MapFrom(src => src));
+        
         CreateMap<UpdateUserRequest, User>();
     }
 
