@@ -1,3 +1,4 @@
+using Application.UseCases.Users.ChangePassword;
 using Application.UseCases.Users.Profile;
 using Application.UseCases.Users.Register;
 using Application.UseCases.Users.Update;
@@ -43,6 +44,18 @@ public class UserController : ControllerBase
     public async Task<IActionResult> UpdateProfile(
         [FromServices] IUpdateUserUseCase useCase,
         [FromBody] UpdateUserRequest request)
+    {
+        await useCase.Execute(request);
+        return NoContent();
+    }
+    
+    [HttpPut("change-password")]
+    [Authorize]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ErrorResponse),StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> ChangePassword(
+        [FromServices] IChangePasswordUseCase useCase,
+        [FromBody] ChangePasswordRequest request)
     {
         await useCase.Execute(request);
         return NoContent();

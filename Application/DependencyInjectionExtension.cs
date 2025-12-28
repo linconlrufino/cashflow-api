@@ -8,6 +8,7 @@ using Application.UseCases.Expenses.Reports.Pdf;
 using Application.UseCases.Expenses.Update;
 using Application.UseCases.Login;
 using Application.UseCases.Login.DoLogin;
+using Application.UseCases.Users.ChangePassword;
 using Application.UseCases.Users.Profile;
 using Application.UseCases.Users.Register;
 using Application.UseCases.Users.Update;
@@ -41,5 +42,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
         services.AddScoped<IGetUserProfileUseCase, GetUserProfileUseCase>();
         services.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
+        services.AddScoped<IChangePasswordUseCase, ChangePasswordUseCase>();
     }
 }
