@@ -1,5 +1,5 @@
 using Application.UseCases.Login;
-using Communication.Requests;
+using Communication.Requests.Expense;
 using Communication.Responses;
 using Communication.Responses.User;
 using Microsoft.AspNetCore.Mvc;

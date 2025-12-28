@@ -1,5 +1,5 @@
 using AutoMapper;
-using Communication.Requests;
+using Communication.Requests.Expense;
 using Communication.Responses.User;
 using Domain.Entities;
 using Domain.Repositories;

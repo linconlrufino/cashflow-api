@@ -1,4 +1,4 @@
-using Communication.Requests;
+using Communication.Requests.Expense;
 using Exception;
 using FluentValidation;
 

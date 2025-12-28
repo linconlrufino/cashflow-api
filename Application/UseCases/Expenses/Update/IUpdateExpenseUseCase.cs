@@ -1,4 +1,5 @@
 using Communication.Requests;
+using Communication.Requests.Expense;
 
 namespace Application.UseCases.Expenses.Update;
 

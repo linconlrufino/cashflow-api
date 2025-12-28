@@ -8,7 +8,9 @@ using Application.UseCases.Expenses.Reports.Pdf;
 using Application.UseCases.Expenses.Update;
 using Application.UseCases.Login;
 using Application.UseCases.Login.DoLogin;
+using Application.UseCases.Users.Profile;
 using Application.UseCases.Users.Register;
+using Application.UseCases.Users.Update;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application;
@@ -37,5 +39,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGenerateExpensesReportPdfUseCase, GenerateExpensesReportPdfUseCase>();
         services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
         services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
+        services.AddScoped<IGetUserProfileUseCase, GetUserProfileUseCase>();
+        services.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
     }
 }

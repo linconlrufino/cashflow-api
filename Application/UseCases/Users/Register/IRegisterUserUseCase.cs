@@ -1,4 +1,4 @@
-using Communication.Requests;
+using Communication.Requests.Expense;
 using Communication.Responses.User;
 
 namespace Application.UseCases.Users.Register;

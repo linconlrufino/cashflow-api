@@ -1,6 +1,7 @@
 using Bogus;
 using Communication.Enums;
 using Communication.Requests;
+using Communication.Requests.Expense;
 
 namespace CommonTestUtilities.Requests;
 

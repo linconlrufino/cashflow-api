@@ -1,4 +1,4 @@
-namespace Communication.Requests;
+namespace Communication.Requests.Expense;
 
 public class LoginRequest
 {

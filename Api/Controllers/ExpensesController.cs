@@ -4,6 +4,7 @@ using Application.UseCases.Expenses.GetById;
 using Application.UseCases.Expenses.Register;
 using Application.UseCases.Expenses.Update;
 using Communication.Requests;
+using Communication.Requests.Expense;
 using Communication.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

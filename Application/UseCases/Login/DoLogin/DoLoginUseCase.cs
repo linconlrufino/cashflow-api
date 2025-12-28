@@ -1,4 +1,4 @@
-using Communication.Requests;
+using Communication.Requests.Expense;
 using Communication.Responses.User;
 using Domain.Repositories.Users;
 using Domain.Security.Cryptography;

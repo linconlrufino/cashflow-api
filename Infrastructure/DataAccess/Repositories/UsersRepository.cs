@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.DataAccess.Repositories;
 
-internal class UsersRepository : IUsersReadOnlyRepository, IUsersWriteOnlyRepository
+internal class UsersRepository : IUsersReadOnlyRepository, IUsersWriteOnlyRepository, IUserUpdateOnlyRepository
 {
     private readonly CashFlowDbContext dbContext;
 
@@ -26,5 +26,15 @@ internal class UsersRepository : IUsersReadOnlyRepository, IUsersWriteOnlyReposi
     public async Task Add(User user)
     { 
         await dbContext.Users.AddAsync(user);
+    }
+
+    public async Task<User> GetUserById(long id)
+    {
+        return await dbContext.Users.FirstAsync(user => user.Id == id);
+    }
+
+    public void Update(User user)
+    {
+        dbContext.Users.Update(user);
     }
 }
